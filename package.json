@@ -1,7 +1,7 @@
 {
   "name": "ls-compile",
   "main": "./lib/livescript-compile",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "LiveScript preview/save compiled Javascript in Atom",
   "activationCommands": {
     "atom-text-editor": "livescript-compile:compile"
