@@ -19,7 +19,7 @@ describe "LivescriptCompile", ->
 
     jasmine.attachToDOM(atom.workspaceView)
 
-    atom.packages.activatePackage('livescript-compile').then ->
+    atom.packages.activatePackage('ls-compile').then ->
       atom.packages.activatePackage('language-livescript')
 
   describe "should open a new pane", ->
@@ -32,7 +32,7 @@ describe "LivescriptCompile", ->
           editor = e
 
       runs ->
-        atom.commands.dispatch atom.views.getView(editor), 'livescript-compile:compile'
+        atom.commands.dispatch atom.views.getView(editor), 'ls-compile:compile'
 
       waitsFor ->
         LivescriptCompileView::renderCompiled.callCount > 0
@@ -59,7 +59,7 @@ describe "LivescriptCompile", ->
 
   describe "when the focus editor option is true", ->
     beforeEach ->
-      atom.config.set "livescript-compile.focusEditorAfterCompile", true
+      atom.config.set "ls-compile.focusEditorAfterCompile", true
       jasmine.attachToDOM(atom.workspaceView)
 
       editor = null
@@ -68,7 +68,7 @@ describe "LivescriptCompile", ->
           editor = e
 
       runs ->
-        atom.commands.dispatch atom.views.getView(editor), 'livescript-compile:compile'
+        atom.commands.dispatch atom.views.getView(editor), 'ls-compile:compile'
 
       waitsFor ->
         LivescriptCompileView::renderCompiled.callCount > 0
@@ -80,7 +80,7 @@ describe "LivescriptCompile", ->
 
   describe "when the editor's grammar is not livescript", ->
     it "should not preview compiled js", ->
-      atom.config.set "livescript-compile.grammars", []
+      atom.config.set "ls-compile.grammars", []
       jasmine.attachToDOM(atom.workspaceView)
 
       waitsForPromise ->

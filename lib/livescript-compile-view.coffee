@@ -37,7 +37,7 @@ class  LivescriptCompileView extends ScrollView
     @subscriptions.add this, 'core:move-up', => @scrollUp()
     @subscriptions.add this, 'core:move-down', => @scrollDown()
 
-    if atom.config.get('livescript-compile.compileOnSave')
+    if atom.config.get('ls-compile.compileOnSave')
       @subscriptions.add @editor.buffer, 'saved', => @saveCompiled()
 
   getEditor: (id) ->
@@ -57,7 +57,7 @@ class  LivescriptCompileView extends ScrollView
 
   compile: (code) ->
 
-    bare     = atom.config.get('livescript-compile.noTopLevelFunctionWrapper') or true
+    bare     = atom.config.get('ls-compile.noTopLevelFunctionWrapper') or true
 
     return allowUnsafeNewFunction ->
       livescript.compile code, {bare}

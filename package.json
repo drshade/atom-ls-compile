@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "description": "LiveScript preview/save compiled Javascript in Atom",
   "activationCommands": {
-    "atom-text-editor": "livescript-compile:compile"
+    "atom-text-editor": "ls-compile:compile"
   },
   "repository": "https://github.com/jhen0409/atom-ls-compile",
   "license": "MIT",

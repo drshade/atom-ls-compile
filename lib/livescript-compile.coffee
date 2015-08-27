@@ -17,13 +17,13 @@ module.exports =
 
   activate: ->
     @subscriptions = new CompositeDisposable
-    @subscriptions.add atom.commands.add 'atom-text-editor', 'livescript-compile:compile': => @display()
+    @subscriptions.add atom.commands.add 'atom-text-editor', 'ls-compile:compile': => @display()
 
     atom.workspace.addOpener (uriToOpen) ->
       {protocol, host, pathname} = url.parse uriToOpen
       pathname = querystring.unescape(pathname) if pathname
 
-      return unless protocol is 'livescript-compile:'
+      return unless protocol is 'ls-compile:'
       new LivescriptCompileView(pathname.substr(1))
 
   display: ->
@@ -32,12 +32,12 @@ module.exports =
 
     return unless editor?
 
-    grammars = atom.config.get('livescript-compile.grammars') or []
+    grammars = atom.config.get('ls-compile.grammars') or []
     unless (grammar = editor.getGrammar().scopeName) in grammars
       console.warn("Cannot compile non-LiveScript to Javascript")
       return
 
-    uri = "livescript-compile://editor/#{editor.id}"
+    uri = "ls-compile://editor/#{editor.id}"
 
     # If a pane with the uri
     pane = atom.workspace.paneForURI uri
@@ -48,7 +48,7 @@ module.exports =
       if livescriptCompileView instanceof LivescriptCompileView
         livescriptCompileView.renderCompiled()
 
-        if atom.config.get('livescript-compile.compileOnSave')
+        if atom.config.get('ls-compile.compileOnSave')
           livescriptCompileView.saveCompiled()
-        if atom.config.get('livescript-compile.focusEditorAfterCompile')
+        if atom.config.get('ls-compile.focusEditorAfterCompile')
           activePane.activate()
