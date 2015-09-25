@@ -1,6 +1,6 @@
 {$, $$$, ScrollView} = require 'atom-space-pen-views'
 {CompositeDisposable} = require 'atom'
-livescript = require 'LiveScript'
+livescript = require 'livescript'
 _ = require 'underscore-plus'
 path = require 'path'
 fs = require 'fs'
